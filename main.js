@@ -9,7 +9,7 @@ if (typeof web3 !== 'undefined') {
 let from;
 web3.eth.getAccounts().then(accounts => {
   from = accounts[0];
-  web3.eth.defaultAccount = accounts[0];
+  web3.eth.defaultAccount = from;
   console.log(`from ${from}`);
   Coursetro.methods.getInstructor().call({}, (err, result) => {
     console.log(`instructor result ${JSON.stringify(result)}`);
@@ -40,22 +40,10 @@ let Coursetro = new web3.eth.Contract(
       "type": "function"
     },
     {
-      "constant": true,
       "inputs": [],
-      "name": "getInstructor",
-      "outputs": [
-        {
-          "name": "",
-          "type": "string"
-        },
-        {
-          "name": "",
-          "type": "uint256"
-        }
-      ],
       "payable": false,
-      "stateMutability": "view",
-      "type": "function"
+      "stateMutability": "nonpayable",
+      "type": "constructor"
     },
     {
       "anonymous": false,
@@ -73,9 +61,27 @@ let Coursetro = new web3.eth.Contract(
       ],
       "name": "Instructor",
       "type": "event"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "getInstructor",
+      "outputs": [
+        {
+          "name": "",
+          "type": "string"
+        },
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
     }
   ],
-  '0x91145A726A7cC128aC71633Baf19E979d7e0d66F'
+  '0xed914BE3Af79435cf44000Ab049e9B2558d6f506'
 );
 
 function setInstructor(name, age) {
@@ -86,12 +92,16 @@ const instructorEmitter = Coursetro.events.Instructor({}, (err, data) => {
     console.log(`event returned error ${err}`);
     return;
   }
-  const {name, age} = data.returnValues;
+  const { name, age } = data.returnValues;
   setInstructor(name, age);
 });
 
-$("#button").click(function () {
+$("#button").click(async function () {
   $("#loader").show();
-  Coursetro.methods.setInstructor($("#name").val(), Number($("#age").val())).send({ from }).then(result => {
-  });
+  $('#error').text('');
+  try {
+    const result = await Coursetro.methods.setInstructor($("#name").val(), Number($("#age").val())).send({ from });
+  } catch (e) {
+    $('#error').text(`unable to set instructor: ${e.message}`);
+  }
 });
