@@ -6,12 +6,14 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "http-server .",
+    "dev": "lite-server",
     "ganache-cli": "ganache-cli -u 0,1,2"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "http-server": "^0.12.3",
+    "lite-server": "^2.5.4",
     "web3": "^1.2.8",
     "web3.js": "github:ethereum/web3.js"
   },

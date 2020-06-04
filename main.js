@@ -25,52 +25,55 @@ let Coursetro = new web3.eth.Contract(
       "constant": false,
       "inputs": [
         {
-          "name": "_fName",
-          "type": "string"
+          "name": "_address",
+          "type": "address"
         },
         {
           "name": "_age",
           "type": "uint256"
+        },
+        {
+          "name": "_fName",
+          "type": "bytes16"
+        },
+        {
+          "name": "_lName",
+          "type": "bytes16"
         }
       ],
-      "name": "setInstructor",
+      "name": "setInstruction",
       "outputs": [],
       "payable": false,
       "stateMutability": "nonpayable",
       "type": "function"
     },
     {
-      "inputs": [],
-      "payable": false,
-      "stateMutability": "nonpayable",
-      "type": "constructor"
-    },
-    {
       "anonymous": false,
       "inputs": [
         {
           "indexed": false,
-          "name": "name",
-          "type": "string"
+          "name": "age",
+          "type": "uint256"
         },
         {
           "indexed": false,
-          "name": "age",
-          "type": "uint256"
+          "name": "fName",
+          "type": "bytes16"
+        },
+        {
+          "indexed": false,
+          "name": "lName",
+          "type": "bytes16"
         }
       ],
-      "name": "Instructor",
+      "name": "instructorInfo",
       "type": "event"
     },
     {
       "constant": true,
       "inputs": [],
-      "name": "getInstructor",
+      "name": "countInstructors",
       "outputs": [
-        {
-          "name": "",
-          "type": "string"
-        },
         {
           "name": "",
           "type": "uint256"
@@ -79,9 +82,69 @@ let Coursetro = new web3.eth.Contract(
       "payable": false,
       "stateMutability": "view",
       "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "name": "_address",
+          "type": "address"
+        }
+      ],
+      "name": "getInstructor",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        },
+        {
+          "name": "",
+          "type": "bytes16"
+        },
+        {
+          "name": "",
+          "type": "bytes16"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "getInstructors",
+      "outputs": [
+        {
+          "name": "",
+          "type": "address[]"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "name": "instructorAccts",
+      "outputs": [
+        {
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
     }
   ],
-  '0xed914BE3Af79435cf44000Ab049e9B2558d6f506'
+  '0xCf0a3a90f1999c9cF9478fBa73f9017920343Df8'
 );
 
 function setInstructor(name, age) {
