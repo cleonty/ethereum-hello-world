@@ -15,19 +15,24 @@
 
 <body>
     <div class="container">
-
         <h1>Coursetro Instructor</h1>
-        <p>Owner address: <span id="owner"></span>
-        </p>
         <p id="error"></p>
+        <span id="countIns"></span>
+
         <h2 id="instructor"></h2>
-        <img id="loader">
+        <span id="insTrans"></span>
+        <hr>
 
-        <label for="name" class="col-lg-2 control-label">Instructor Name</label>
-        <input id="name" type="text">
+        <img id="loader" src="">
 
-        <label for="name" class="col-lg-2 control-label">Instructor Age</label>
-        <input id="age" type="text">
+        <label for="fName" class="col-lg-2 control-label">First Name</label>
+        <input id="fName" type="text">
+
+        <label for="lName" class="col-lg-2 control-label">Last Name</label>
+        <input id="lName" type="text">
+
+        <label for="age" class="col-lg-2 control-label">Instructor Age</label>
+        <input id="age" type="number">
 
         <button id="button">Update Instructor</button>
 
